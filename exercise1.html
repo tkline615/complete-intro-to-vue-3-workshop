@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Succession!</title>
+</head>
+<body>
+    <h1>Who will "win" the coveted CEO slot in Succession?</h1>
+    <div id="app">
+        <p>{{ message }}</p>
+        <ul v-if="characters.length > 0">
+            <li v-for="character in characters">{{ character.name }} is {{ determineAffiliation(character) }}</li>
+        </ul>
+        <p v-else>Characters array is empty.</p>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        const { createApp } = Vue
+        const app = createApp({
+            data() {
+                return {
+                    message: 'mount works',
+                    characters: [
+                    {
+                        name: 'Tom Wambsgams',
+                        personality: 'Worrisome',
+                        affiliation: 'Logan',
+                        netWorth: 15000000
+                    },
+                    {
+                        name: 'Shiv Roy',
+                        personality: 'Hypocrite',
+                        affiliation: 'Self',
+                        netWorth: 200000000
+                    },
+                    {
+                        name: 'Roman Roy',
+                        personality: 'Facist',
+                        affiliation: 'Self',
+                        netWorth: 150000000
+                    },
+                    {
+                        name: 'Kendall Roy',
+                        personality: 'Narcissist',
+                        affiliation: 'Self',
+                        netWorth: 350000000
+                    }
+                    ]
+                }
+            },
+            methods: {
+                determineAffiliation(character) {
+                    return (character.affiliation === 'Self' ? 'Disloyal' : 'Loyal')
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>

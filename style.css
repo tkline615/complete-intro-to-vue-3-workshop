@@ -1,0 +1,77 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+* {
+    font-family: Inter;
+}
+
+.top-nav {
+    background-color: #efeffd;
+    display: flex;
+align-items: center;
+height: 60px;
+}
+
+.top-menu {
+    list-style: none;
+    display: flex;
+    background-color: 1px solid #efeffd;
+}
+
+.top-menu-item {
+    display: flex;
+    padding: 4px 12px 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;   
+}
+
+.top-menu-item a:hover {
+    border-radius: 6px;
+    background: var(--action-ghost-hover, rgba(2, 47, 82, 0.06));
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+
+a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+i {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+}
+
+span {
+    color: var(--action-neutral-normal, #4A545E);
+
+/* Medium/75 */
+font-size: 14px;
+font-family: Inter;
+font-style: normal;
+font-weight: 450;
+line-height: 24px;
+letter-spacing: 0.2px;
+margin: 8px;
+}

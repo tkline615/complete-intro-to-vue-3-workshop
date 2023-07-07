@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Succession!</title>
+</head>
+<body>
+    <h1>Who will "win" the coveted CEO slot in Succession?</h1>
+    <div id="app">
+        <p>{{ message }}</p>
+        <ul v-if="characters.length > 0">
+            <li v-for="character in characters">{{ character.name }} is {{ determineAffiliation(character) }}.
+                Mark as favorite:  
+                <button v-if="!isFavorite(character)" v-on:click="addToFavorites(character)">Favorite</button>
+            </li>
+        </ul>
+        <p v-else>Characters array is empty.</p>
+
+        <h2>Favorites</h2>
+        <div v-if="favoriteCharacters.length > 0">
+            <ul>
+                <li v-for="favorite in favoriteCharacters"> {{favorite.name}}</li>
+            </ul>
+        </div>
+        <div v-else><p>Nobody is a favorite yet.</p></div>
+        <div>
+            <h2>Add New Character</h2>
+            <form @submit="handleSubmit">
+                <label for="name">Name:</label>
+                <input type="text" name="name">
+
+                <label for="personality">Personality:</label>
+                <input type="text" name="personality">
+
+                <label for="affiliation">Affiliation</label>
+                <input type="text" name="affiliation">
+
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <!-- Wipe this -->
+        <div>
+            <pre> {{favoriteMoment }}</pre>
+            <label for="favoriteMoment">Favorite Moment</label>
+            <input type="text" name="favoriteMoment" v-model="favoriteMoment.details">
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        const { createApp } = Vue
+        const app = createApp({
+            data() {
+                return {
+                    message: 'mount works',
+                    characters: [
+                    {
+                        name: 'Tom Wambsgams',
+                        personality: 'Worrisome',
+                        affiliation: 'Logan',
+                        netWorth: 15000000
+                    },
+                    {
+                        name: 'Shiv Roy',
+                        personality: 'Hypocrite',
+                        affiliation: 'Self',
+                        netWorth: 200000000
+                    },
+                    {
+                        name: 'Roman Roy',
+                        personality: 'Facist',
+                        affiliation: 'Self',
+                        netWorth: 150000000
+                    },
+                    {
+                        name: 'Kendall Roy',
+                        personality: 'Narcissist',
+                        affiliation: 'Self',
+                        netWorth: 350000000
+                    }
+                    ],
+                    favoriteCharacters: [],
+                    favoriteMoment: {
+                        details: '',
+                        characterName: ''
+                    }
+                }
+            },
+            methods: {
+                determineAffiliation(character) {
+                    return (character.affiliation === 'Self' ? 'Disloyal' : 'Loyal')
+                },
+                addToFavorites(character) {
+                    console.log(character)
+                    this.favoriteCharacters.push(character)
+                },
+                addToCharacters(name, personality, affiliation) {
+                    this.characters.push({name: name, personality: personality, affiliation: affiliation})
+                },
+                isFavorite(character) {
+                    return this.favoriteCharacters.includes(character)
+                },
+                handleSubmit(event) {
+                    event.preventDefault() // Prevent the default form submission
+                    console.log(event)
+                    console.log(`Name is: ${event.target.name.value}`)
+                    this.addToCharacters(
+                        event.target.name.value, 
+                        event.target.personality.value, 
+                        event.target.affiliation.value
+                    )
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>
